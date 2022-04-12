@@ -54,7 +54,6 @@ public class GUI implements ActionListener {
         frame.setVisible(true);
 
     }
-
     public int getRandomNumber(int min, int max) {
         return (int) ((Math.random() * (max - min)) + min);
     }
@@ -72,17 +71,17 @@ public class GUI implements ActionListener {
             return 4;
         }
         if (this.fivePity >= 85)
-            bulan5 += 350;
+            bulan5 += 0.5;
         else if (this.fivePity >= 80)
-            bulan5 += 250;
+            bulan5 += 0.4;
         else if (this.fivePity >= 75)
-            bulan5 += 100;
+            bulan5 += 0.3;
 
         if (bulan5 * 1000 >= 994) {
             reset5Pity();
             return 5;
         }
-        else if (bulan4 >= 940) {
+        else if (bulan4 * 1000>= 950) {
             reset4Pity();
             return 4;
         }
@@ -140,7 +139,9 @@ public class GUI implements ActionListener {
             animation.pack();
             animation.setVisible(true);
         }
-        animation.dispose();
+        if(animation.isActive()) {
+            waitABit.doIt(500);
+        }
         label.setText("Pity: " + this.fivePity);
     }
 }
